@@ -19,7 +19,7 @@ public class Server {
     private DataInputStream in;
     private DataOutputStream out;
     private static Logger logger = Logger.getLogger(Server.class.getName());
-    ;
+
     private Handler fileHandler;
 
     {
@@ -68,7 +68,13 @@ public class Server {
                 e.printStackTrace();
             }
         }
-    }
+            try {
+                Class.forName("org.postgresql.Driver");
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
 
     public void broadcastMsg(ClientHandler sender, String msg) {
         String message = String.format("[ %s ]: %s", sender.getNickname(), msg);
